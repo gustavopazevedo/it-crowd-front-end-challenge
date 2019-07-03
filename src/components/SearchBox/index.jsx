@@ -60,6 +60,7 @@ function SearchBox({ getWeather, weather }) {
 	const [value, setValue] = useState('');
 	const [savedItems, setSavedItems] = useState(JSON.parse(localStorage.getItem('savedItems')) || []);
 
+	/** SAVE CITY NAME ON LOCAL STORAGE EVERYTIME THAT WEATHER UPDATESS */
 	useEffect(function () {
 		if (weather.isFulfilled) {
 			saveOnLocalStorage(value);
@@ -67,15 +68,20 @@ function SearchBox({ getWeather, weather }) {
 	}, [weather])
 
 	function doSearch(e, searchValue) {
-		if (e.which === 13 || e.keyCode === 13 || e.target.tagName === 'BUTTON' || e.target.tagName === 'SPAN') {
+		if (e.which === 13 || e.keyCode === 13) {
 			if (searchValue) {
+				getWeather(searchValue)
+			}
+		} else if(e.target.tagName === 'SPAN') {
+			if (searchValue) {
+				setValue(searchValue)
 				getWeather(searchValue)
 			}
 		}
 	}
 
-	function removeSaved(item) {
-		let _savedItems = savedItems.filter(savedItem => savedItems !== item);
+	function removeSaved(e, item) {
+		let _savedItems = savedItems.filter(savedItem => savedItem !== item);
 
 		setSavedItems(_savedItems)
 		localStorage.setItem('savedItems', JSON.stringify(_savedItems))
@@ -122,7 +128,7 @@ function SearchBox({ getWeather, weather }) {
 			return (
 				<StyledSearchBoxSavedList>
 					{savedItems.map(item => (
-						<Tag text={item} onClick={e => doSearch(e, item)} onClose={item => removeSaved(item)} key={uuidv4()} />
+						<Tag text={item} onClick={e => doSearch(e, item)} onRemove={(e, text) => removeSaved(e, text)} key={uuidv4()} />
 					))}
 				</StyledSearchBoxSavedList>
 			)
@@ -132,7 +138,7 @@ function SearchBox({ getWeather, weather }) {
 	return (
 		<Fragment>
 			<StyledSearchBoxWrapper>
-				<StyledSearchBoxField
+				<StyledSearchBoxField 
 					type="text"
 					value={value}
 					onChange={(e) => setValue(e.target.value)}

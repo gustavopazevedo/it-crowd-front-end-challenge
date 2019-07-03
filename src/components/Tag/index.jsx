@@ -29,11 +29,11 @@ const StyledTagRemoveButton = styled.button`
 `;
 /** END STYLED */
 
-function Tag({ onClick, onClose, text }) {
+function Tag({ onClick, onRemove, text }) {
 	return (
-		<StyledTag onClick={() => onClick(text)}>
+		<StyledTag onClick={(e) => onClick(e, text)}>
 			{text}
-			<StyledTagRemoveButton />
+			<StyledTagRemoveButton onClick={e => onRemove(e, text)} />
 		</StyledTag>
 	)
 }
