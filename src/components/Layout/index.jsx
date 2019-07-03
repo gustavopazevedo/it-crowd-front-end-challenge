@@ -13,6 +13,8 @@ import "normalize.css";
 
 /** GLOBAL STYLES */
 const GlobalStyles = css`
+	@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap');
+
 	:root {
 		--default-font-family: "Montserrat", sans-serif;
 	}
