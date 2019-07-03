@@ -11,7 +11,6 @@ const StyledFooter = styled.header`
 	height: auto;
 	position: relative;
 	margin: 0 auto;
-	background-color: #f00;
 `;
 /** END STYLED */
 
@@ -19,7 +18,6 @@ function Footer() {
 	return (
 		<StyledFooter>
 			<Container>
-				Footer
 			</Container>
 		</StyledFooter> 
 	);

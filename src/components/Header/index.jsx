@@ -11,7 +11,6 @@ const StyledHeader = styled.header`
 	height: auto;
 	position: relative;
 	margin: 0 auto;
-	background-color: #f00;
 `;
 /** END STYLED */
 
@@ -19,7 +18,6 @@ function Header() {
 	return (
 		<StyledHeader>
 			<Container>
-				Header
 			</Container>
 		</StyledHeader> 
 	);
