@@ -15,11 +15,11 @@ function getWeather(city) {
 		})
 
 		try {
-			const { data } = await axios.get(`${API_URL}?q=${city}&appid=${APP_ID}`);
+			const { data } = await axios.get(`${API_URL}?q=${encodeURI(city)}&appid=${APP_ID}`);
 
 			dispatch({
 				type: GET_WEATHER_FULFILLED,
-				payload: data
+				payload: Array.isArray(data) ? data : [data]
 			})
 		} catch (err) {
 			dispatch({
