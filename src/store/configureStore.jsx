@@ -4,12 +4,12 @@ import thunkMiddleware from 'redux-thunk';
 /** END PACKAGES */
 
 /** REDUCERS */
-import reducers from './../reducers';
+import rootReducer from './../reducers/rootReducer';
 /** END REDUCERS */
 
-const configureStore = defaultState => {
+function configureStore(defaultState) {
 	return createStore(
-		reducers,
+		rootReducer,
 		defaultState,
 		applyMiddleware(thunkMiddleware)
 	)

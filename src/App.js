@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 /** ACTIONS */
@@ -9,10 +9,13 @@ import actions from "./actions";
 import Layout from './components/Layout';
 /** COMPONENTS */
 
-function App({ weather }) {
+function App({ getWeather, weather }) {
+	useEffect(function() {
+		getWeather('London');
+	}, [])
+
 	return (
 		<Layout>
-			{JSON.stringify(weather)}
 		</Layout>
 	);
 }

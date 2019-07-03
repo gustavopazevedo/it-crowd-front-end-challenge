@@ -1,7 +1,5 @@
-const actionTypes = {
+export default {
 	GET_WEATHER_PENDING: 'GET_WEATHER_PENDING',
 	GET_WEATHER_FULFILLED: 'GET_WEATHER_FULFILLED',
 	GET_WEATHER_REJECTED: 'GET_WEATHER_REJECTED'
 };
-
-export default actionTypes;

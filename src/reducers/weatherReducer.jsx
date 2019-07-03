@@ -12,7 +12,7 @@ const initialState = {
 };
 /** END INITIAL STATE */
 
-const weatherReducer = (state = initialState, { type, payload }) => {
+function weatherReducer(state = initialState, { type, payload }) {
 	switch (type) {
 		case GET_WEATHER_PENDING:
 			return {
@@ -39,6 +39,6 @@ const weatherReducer = (state = initialState, { type, payload }) => {
 		default:
 			return state;
 	}
-};
+}
 
 export default weatherReducer;

@@ -4,8 +4,6 @@ import { combineReducers } from 'redux';
 import weatherReducer from './weatherReducer';
 /** END REDUCERS */
 
-const reducers = combineReducers({
+export default combineReducers({
 	weather: weatherReducer
 })
-
-export default reducers;

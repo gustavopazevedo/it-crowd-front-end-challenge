@@ -2,8 +2,6 @@
 import getWeather from './weatherActions';
 /** END ACTIONS */
 
-const actions = {
+export default {
 	getWeather
 }
-
-export default actions;
