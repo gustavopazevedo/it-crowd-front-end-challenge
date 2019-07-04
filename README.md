@@ -1,3 +1,9 @@
+## Code Challenge
+
+This Code Challenge was developed using Creact React App, Redux, Redux Thunk and Emotion CSS for Styled Components. I used 3 API's, OpenWeather, Google Maps API and OpenCage to get City information and do the Geolocation automatically based on browser.
+
+Thanks in advance
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
