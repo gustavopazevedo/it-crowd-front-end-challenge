@@ -60,7 +60,9 @@ function MapWrapper({ google, weather }) {
 	return (
 		<StyledMapWrapper>
 			<StyledMapWrapperText>
-				Type a <strong>City</strong> in the search box an press <strong>Get</strong>. <br />If you have <strong>Saved items</strong> you can click in one of these items.
+				Type a <strong>City</strong> in the search box an press <strong>Get</strong>. <br />
+				If you have <strong>Saved items</strong> you can click in one of these items. <br />
+				We will get your <strong>Current Location</strong> automagically if you permit this.
 			</StyledMapWrapperText>
 		</StyledMapWrapper>
 	)

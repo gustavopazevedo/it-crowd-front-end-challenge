@@ -86,7 +86,7 @@ function SearchBox({ getInfoLatLng, getWeather, infoLatLng, weather }) {
 	}, [weather])
 
 	function doSearch(e, searchValue) {
-		if (e && e.which === 13 || e && e.keyCode === 13 || e && e.target.tagName === 'BUTTON') {
+		if (e && e.which === 13 || e && e.keyCode === 13 || e && e.target.tagName === 'BUTTON' && e.target.innerText === 'Get') {
 			if (searchValue) {
 				getWeather(searchValue)
 			}
