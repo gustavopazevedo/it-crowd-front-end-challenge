@@ -47,6 +47,7 @@ const StyledSearchBoxButton = styled.button`
 	border-top-right-radius: 30px;
 	border-bottom-right-radius: 30px;
 	font-weight: 600;
+	outline: none;
 `;
 
 const StyledSearchBoxSavedList = styled.div`
@@ -85,7 +86,7 @@ function SearchBox({ getInfoLatLng, getWeather, infoLatLng, weather }) {
 	}, [weather])
 
 	function doSearch(e, searchValue) {
-		if (e && e.which === 13 || e && e.keyCode === 13) {
+		if (e && e.which === 13 || e && e.keyCode === 13 || e && e.target.tagName === 'BUTTON') {
 			if (searchValue) {
 				getWeather(searchValue)
 			}
