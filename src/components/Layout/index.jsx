@@ -1,11 +1,6 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { css, Global } from "@emotion/core";
 import styled from "@emotion/styled";
-
-/** COMPONENTS */
-import Header from "./../Header";
-import Sidebar from "./../Sidebar";
-/** END COMPONENTS */
 
 /** NORMALIZE.CSS */
 import "normalize.css";

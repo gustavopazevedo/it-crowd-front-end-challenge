@@ -57,9 +57,25 @@ const StyledSearchBoxSavedList = styled.div`
 `;
 /** END STYLED */
 
-function SearchBox({ getWeather, weather }) {
+function SearchBox({ getInfoLatLng, getWeather, infoLatLng, weather }) {
 	const [value, setValue] = useState('');
 	const [savedItems, setSavedItems] = useState(JSON.parse(localStorage.getItem('savedItems')) || []);
+
+	/** EXECUTE ONLY AFTER COMPONENT MOUNT, GET LAT AND LNG OF USER AND SET CITY  */
+	useEffect(function () {
+		navigator.geolocation.getCurrentPosition(function(position) {
+			const { latitude, longitude } = position.coords;
+			getInfoLatLng(latitude, longitude)
+		})
+	}, [])
+
+	/** EXECUTE AFTER INFOLATLNG CHANGES THEIR VALUE, SO I CAN GET CITY NAME  */
+	useEffect(function () {
+		if (infoLatLng.isFulfilled) {
+			const { city } = infoLatLng.data.results[0].components;
+			doSearch(undefined, city);
+		}
+	}, [infoLatLng])
 
 	/** SAVE CITY NAME ON LOCAL STORAGE EVERYTIME THAT WEATHER UPDATESS */
 	useEffect(function () {
@@ -69,11 +85,11 @@ function SearchBox({ getWeather, weather }) {
 	}, [weather])
 
 	function doSearch(e, searchValue) {
-		if (e.which === 13 || e.keyCode === 13) {
+		if (e && e.which === 13 || e && e.keyCode === 13) {
 			if (searchValue) {
 				getWeather(searchValue)
 			}
-		} else if(e.target.tagName === 'SPAN') {
+		} else if(e && e.target.tagName === 'SPAN' || e === undefined) {
 			if (searchValue) {
 				setValue(searchValue)
 				getWeather(searchValue)
@@ -100,27 +116,6 @@ function SearchBox({ getWeather, weather }) {
 
 			setSavedItems(_savedItems)
 			localStorage.setItem('savedItems', JSON.stringify(_savedItems))
-		}
-	}
-
-	function showResults() {
-		if (weather.isFulfilled) {
-			return weather.data.map(item => (
-				<ul key={uuidv4()} style={{ color: '#000', fontSize: '20px' }}>
-					<li style={{ color: '#000' }}>Temperature: {item.main.temp - 273.15}°</li>
-					<li style={{ color: '#000' }}>Pressure: {item.main.pressure}</li>
-					<li style={{ color: '#000' }}>Humidity: {item.main.humidity}</li>
-					<li style={{ color: '#000' }}>Min temperature: {item.main.temp_min}</li>
-					<li style={{ color: '#000' }}>Max temperature: {item.main.temp_max}</li>
-					<li style={{ color: '#000' }}>Lat: {item.coord.lat}</li>
-					<li style={{ color: '#000' }}>Long: {item.coord.lon}</li>
-				</ul>
-			))
-		} else if (weather.isRejected) {
-			return (
-				<p style={{ color: '#fff' }}>Sorry. We couldn't find Weather for {value}</p>
-			)
-
 		}
 	}
 
@@ -154,7 +149,8 @@ function SearchBox({ getWeather, weather }) {
 
 export default connect(
 	store => ({
-		weather: store.weather
+		weather: store.weather,
+		infoLatLng: store.infoLatLng
 	}),
 	actions
 )(SearchBox);
