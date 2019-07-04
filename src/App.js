@@ -2,6 +2,7 @@ import React from 'react';
 
 /** COMPONENTS */
 import Layout from './components/Layout';
+import MapWrapper from './components/MapWrapper';
 import Sidebar from './components/Sidebar';
 /** COMPONENTS */
 
@@ -13,6 +14,7 @@ function App() {
 	return (
 		<Layout>
 			<Sidebar />
+			<MapWrapper />
 		</Layout>
 	);
 }

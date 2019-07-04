@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 
 /** COMPONENTS */
 import Header from "./../Header";
-import Footer from "./../Footer";
+import Sidebar from "./../Sidebar";
 /** END COMPONENTS */
 
 /** NORMALIZE.CSS */
@@ -48,24 +48,26 @@ const StyledLayout = styled.div`
 	width: 100%;
 	min-height: 100vh;
 	background-color: #323544;
+	position: relative;
+	display: block;
 `;
 
 const StyledMain = styled.main`
-	width: 100%;
+	width: calc(100% - 600px);
 	min-height: 100vh;
+	z-index: 1;
+	position: fixed;
+	top: 0;
+	right: 0;
 `;
 /** END STYLED */
 
 function Layout({ children }) {
 	return (
-		<Fragment>
+		<StyledLayout>
 			<Global styles={GlobalStyles} />
-			<StyledLayout>
-				<Header />
-				<StyledMain>{children}</StyledMain>
-				<Footer />
-			</StyledLayout>
-		</Fragment>
+			<StyledMain>{children}</StyledMain>
+		</StyledLayout>
 	);
 }
 

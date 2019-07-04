@@ -19,7 +19,7 @@ function getWeather(city) {
 
 			dispatch({
 				type: GET_WEATHER_FULFILLED,
-				payload: Array.isArray(data) ? data : [data]
+				payload: data
 			})
 		} catch (err) {
 			dispatch({

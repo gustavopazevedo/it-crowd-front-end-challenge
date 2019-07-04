@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import uuidv4 from 'uuid/v4';
@@ -19,6 +19,7 @@ const StyledSearchBoxWrapper = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	margin-top: 20px;
+	padding: 0 35px 35px 35px;
 `;
 
 const StyledSearchBoxField = styled.input`
@@ -106,7 +107,7 @@ function SearchBox({ getWeather, weather }) {
 		if (weather.isFulfilled) {
 			return weather.data.map(item => (
 				<ul key={uuidv4()} style={{ color: '#000', fontSize: '20px' }}>
-					<li style={{ color: '#000' }}>Temperature: {item.main.temp}</li>
+					<li style={{ color: '#000' }}>Temperature: {item.main.temp - 273.15}°</li>
 					<li style={{ color: '#000' }}>Pressure: {item.main.pressure}</li>
 					<li style={{ color: '#000' }}>Humidity: {item.main.humidity}</li>
 					<li style={{ color: '#000' }}>Min temperature: {item.main.temp_min}</li>
@@ -147,7 +148,6 @@ function SearchBox({ getWeather, weather }) {
 				<StyledSearchBoxButton onClick={e => doSearch(e, value)}>Get</StyledSearchBoxButton>
 				{showSavedItems()}
 			</StyledSearchBoxWrapper>
-			{showResults()}
 		</Fragment>
 	);
 }
